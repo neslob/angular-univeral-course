@@ -26,7 +26,7 @@ export class CourseResolver implements Resolve<Course> {
         const COURSE_KEY = makeStateKey<Course>("courseKey-" + courseId);
 
         if (this.transferState.hasKey(COURSE_KEY)) {
-
+            console.log('✅ transferState found');
             const course = this.transferState.get(COURSE_KEY, null);
 
             this.transferState.remove(COURSE_KEY);
@@ -34,6 +34,7 @@ export class CourseResolver implements Resolve<Course> {
             return of(course);
         }
         else {
+            console.log('⛔️ transferState not found - I am a server');
             return this.coursesService.findCourseById(courseId)
                 .pipe(
                     first(),

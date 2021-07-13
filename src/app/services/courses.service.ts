@@ -19,6 +19,7 @@ export class CoursesService {
     }
 
     findCourseById(courseId: string): Observable<Course> {
+        console.log('❌ only on server ');
         return this.http.get<Course>(`${CoursesService.API_URL}/courses/${courseId}.json`);
     }
 
